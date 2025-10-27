@@ -23,7 +23,7 @@ const bottles = [
         mainText: "BERRY",
         textColor: "#ffe0e0"
     },
-        {
+    {
         img: "./images/Bottle4.png",
         bg: "radial-gradient(circle, #d15bf5ff 0%, #b81db0ff 100%)",
         title: "Pure Bliss",
@@ -35,6 +35,13 @@ const bottles = [
 
 let index = 0;
 let isScrolling = false;
+
+
+// Preload all bottle images
+bottles.forEach(b => {
+    const img = new Image();
+    img.src = b.img;
+});
 
 window.addEventListener("wheel", (e) => {
     if (isScrolling) return;
@@ -61,22 +68,28 @@ window.addEventListener("wheel", (e) => {
     mainText.style.transform = "translateY(40px) scale(1.1)";
 
     setTimeout(() => {
-        // Update to new flavor
-        bottle.src = bottles[index].img;
-        hero.style.background = bottles[index].bg;
-        title.textContent = bottles[index].title;
-        desc.textContent = bottles[index].desc;
-        mainText.textContent = bottles[index].mainText;
-        mainText.style.color = bottles[index].textColor;
+        const bottleData = bottles[index];
+        const tempImg = new Image();
+        tempImg.src = bottleData.img;
 
-        // Transition in
-        bottle.style.opacity = 1;
-        bottle.style.transform = "translate(-50%, -50%) rotate(0deg)";
-        title.style.opacity = 1;
-        desc.style.opacity = 1;
-        mainText.style.opacity = 1;
-        mainText.style.transform = "translateY(0) scale(1)";
+        tempImg.onload = () => {
+            bottle.src = bottleData.img;
+            hero.style.background = bottleData.bg;
+            title.textContent = bottleData.title;
+            desc.textContent = bottleData.desc;
+            mainText.textContent = bottleData.mainText;
+            mainText.style.color = bottleData.textColor;
+
+            // Fade in new content
+            bottle.style.opacity = 1;
+            bottle.style.transform = "translate(-50%, -50%) rotate(0deg)";
+            title.style.opacity = 1;
+            desc.style.opacity = 1;
+            mainText.style.opacity = 1;
+            mainText.style.transform = "translateY(0) scale(1)";
+        };
     }, 400);
+
 
     setTimeout(() => (isScrolling = false), 1000);
 });
