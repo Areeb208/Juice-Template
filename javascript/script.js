@@ -20,7 +20,7 @@ const bottles = [
         bg: "radial-gradient(circle, #f55b5b 0%, #b81d1d 100%)",
         title: "Berry Bliss",
         desc: "Sweet and tangy — refresh your mood with the taste of ripe berries.",
-        mainText: "BERRY",
+        mainText: "SWEET",
         textColor: "#ffe0e0"
     },
     {
@@ -28,7 +28,7 @@ const bottles = [
         bg: "radial-gradient(circle, #d15bf5ff 0%, #b81db0ff 100%)",
         title: "Pure Bliss",
         desc: "Sweet and tangy — refresh your mood with the taste of ripe berries.",
-        mainText: "PU.RE",
+        mainText: "BERRY",
         textColor: "#ffe0e0"
     }
 ];
